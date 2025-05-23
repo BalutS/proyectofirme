@@ -1,8 +1,7 @@
 package com.vista;
 
-import com.vista.Principal.1;
-import com.vista.Principal.2;
-import com.vista.Principal.3;
+import com.modelo.Colegio;
+// import com.vista.MenuAdmin; // Already in the same package
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -62,9 +61,13 @@ public class Principal extends JFrame {
 
    private void btnContinueActionPerformed(ActionEvent evt) {
       String rol = (String)this.rolComboBox.getSelectedItem();
-      MenuAdmin mAdmin = new MenuAdmin();
-      MenuEstudiante mEstudiante = new MenuEstudiante();
-      MenuDocente mDocente = new MenuDocente();
+      MenuAdmin mAdmin = new MenuAdmin(); // This will load or create the Colegio instance
+      Colegio colegio = mAdmin.getColegio(); // Get the instance
+
+      // Keep these declarations, but modify their instantiation within the switch
+      MenuEstudiante mEstudiante = null;
+      MenuDocente mDocente = null;
+
       byte var7 = -1;
       switch(rol.hashCode()) {
       case -1748547086:
@@ -89,10 +92,12 @@ public class Principal extends JFrame {
          mAdmin.setLocationRelativeTo((Component)null);
          break;
       case 1:
+         mDocente = new MenuDocente(colegio); // Pass the colegio instance
          mDocente.setVisible(true);
          mDocente.setLocationRelativeTo((Component)null);
          break;
       case 2:
+         mEstudiante = new MenuEstudiante(colegio); // Pass the colegio instance
          mEstudiante.setVisible(true);
          mEstudiante.setLocationRelativeTo((Component)null);
       }

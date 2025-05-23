@@ -1,6 +1,9 @@
 package com.modelo;
 
-public class Profesor extends Persona {
+import java.io.Serializable;
+
+public class Profesor extends Persona implements Serializable {
+   private static final long serialVersionUID = 1L;
    private Curso curso;
 
    public Profesor() {
