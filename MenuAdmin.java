@@ -1,6 +1,10 @@
 package com.vista;
 
+import com.modelo.Colegio;
+import com.modelo.Dao;
 import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,8 +20,31 @@ public class MenuAdmin extends JFrame {
    private JLabel jLabel1;
    private JLabel titulo;
 
+   private Colegio colegio;
+   private static final String DATA_FILE = "colegio.dat";
+
    public MenuAdmin() {
       this.initComponents();
+      this.colegio = Dao.cargarDatos(DATA_FILE);
+      if (this.colegio == null) {
+         this.colegio = new Colegio("Mi Colegio Predeterminado"); // Or any default name
+         System.out.println("No se encontraron datos existentes. Se ha creado una nueva instancia de Colegio.");
+      } else {
+         System.out.println("Datos de Colegio cargados exitosamente desde " + DATA_FILE);
+      }
+
+      this.addWindowListener(new WindowAdapter() {
+         @Override
+         public void windowClosing(WindowEvent e) {
+            Dao.guardarDatos(colegio, DATA_FILE);
+            System.out.println("Datos de Colegio guardados exitosamente en " + DATA_FILE);
+            super.windowClosing(e);
+         }
+      });
+   }
+
+   public Colegio getColegio() {
+      return this.colegio;
    }
 
    private void initComponents() {

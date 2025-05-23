@@ -1,11 +1,15 @@
 package com.vista;
 
+import com.modelo.Colegio;
 import javax.swing.GroupLayout;
 import javax.swing.JFrame;
 import javax.swing.GroupLayout.Alignment;
 
 public class MenuDocente extends JFrame {
-   public MenuDocente() {
+   private Colegio colegio;
+
+   public MenuDocente(Colegio colegio) {
+      this.colegio = colegio;
       this.initComponents();
    }
 

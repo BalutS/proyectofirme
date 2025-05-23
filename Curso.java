@@ -1,9 +1,11 @@
 package com.modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Curso {
+public class Curso implements Serializable {
+   private static final long serialVersionUID = 1L;
    private int grado;
    private int grupo;
    private ArrayList<Estudiante> estudiantes;

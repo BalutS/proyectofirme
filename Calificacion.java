@@ -1,9 +1,11 @@
 package com.modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Calificacion {
+public class Calificacion implements Serializable {
+   private static final long serialVersionUID = 1L;
    private String nombre;
    private float nota;
    private int periodo;
